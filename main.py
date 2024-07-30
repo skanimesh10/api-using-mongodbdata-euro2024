@@ -1,14 +1,14 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
 import logging
-from config import Settings
+# from config import Settings
 from database import database
 from bson import ObjectId
 from pymongo import ASCENDING
 
 app = FastAPI()
 logging.basicConfig(level=logging.INFO)
-settings = Settings()
+# settings = Settings()
 
 
 def convert_objectid_to_str(doc):
