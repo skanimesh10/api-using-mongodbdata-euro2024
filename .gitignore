@@ -18,3 +18,4 @@ env/
 
 # OS-specific files
 .DS_Store
+config.py
