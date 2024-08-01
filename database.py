@@ -23,3 +23,4 @@ client = AsyncIOMotorClient(MONGODB_URI)
 
 # Access the specified database
 database = client[db_name]
+
