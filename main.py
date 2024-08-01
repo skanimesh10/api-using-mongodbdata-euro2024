@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI, HTTPException
 import logging
 from database import database
