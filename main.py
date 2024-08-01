@@ -1,14 +1,12 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
 import logging
-# from config import Settings
 from database import database
 from bson import ObjectId
 from pymongo import ASCENDING
 
 app = FastAPI()
 logging.basicConfig(level=logging.INFO)
-# settings = Settings()
 
 
 def convert_objectid_to_str(doc):
@@ -47,6 +45,11 @@ async def fetch_and_convert(collection_name, query=None, sort=None, limit=1000):
         cursor = cursor.sort(sort)
     items = await cursor.to_list(limit)
     return convert_objectid_to_str(items)
+
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
 
 @app.get("/fixtures/")
@@ -92,7 +95,3 @@ async def get_match_by_id(id: int):
         raise HTTPException(status_code=404, detail="Match not found")
     logging.info(f"Match found: {item}")
     return convert_objectid_to_str(item)
-
-
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", host=settings.HOST, port=settings.PORT, reload=settings.DEBUG)
